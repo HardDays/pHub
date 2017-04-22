@@ -5,4 +5,4 @@ from bottle import route, run, template
 def index(name):
     return template('<b>Hello {{name}}</b>!', name=name)
 
-run(host='localhost', port=1488)
+run(host='http://phub.azurewebsites.net', port=8080)
