@@ -20,9 +20,10 @@ def wsgi_app():
     return bottle.default_app()
 
 
-@route('/hello')
+@bottle.route('/hello')
 def hello(name):
     return "Hello World, {{name}}!"
+
 
 if __name__ == '__main__':
     PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
