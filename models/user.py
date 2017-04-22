@@ -1,5 +1,5 @@
 class User(object):
-	def __init__(self, uuid, name, contacts=[], phone='', photo=''):
+	def __init__(self, uuid, name, contacts=[], phone=None, photo=None):
 		self.uuid = uuid
 		self.name = name
 		self.contacts = contacts
