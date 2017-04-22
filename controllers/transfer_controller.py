@@ -7,3 +7,5 @@ class TransferController(object):
 	def transfer(self, sender, to, amount):
 		bill = Bill(str_gen(), sender, to, amount)
 		self.db_collector.bills[bill.id] = bill
+
+	

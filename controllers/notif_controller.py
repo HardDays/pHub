@@ -7,10 +7,15 @@ class NotifController(object):
 
 	def send_to_user(self, user, notification):
 		if user.phone:
-			message = self.client.api.account.messages.create(to=user.phone,
-                                             from_='+12029993558',
-                                             body=notification.form())
+			message = self.client.api.account.messages.create(
+											to=user.phone,
+                                            from_='+12029993558',
+                                            body=notification.form())
 
 	def send_to_group(self, group, notification):
 		for user in group.users:
 			self.sent_to_user(user, notification)
+
+	def send_to_contacts(self, user, notification):
+		for contact in user.contacts:
+			self.sent_to_user(contact, notification)
