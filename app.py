@@ -20,12 +20,19 @@ def wsgi_app():
     """Returns the application to make available through wfastcgi. This is used
     when the site is published to Microsoft Azure."""
     return bottle.default_app()
-
+    
+######################################################
+#########BEGIN ENDPOINTS##############################
+######################################################
 
 @bottle.route('/hello/<name>')
 def hello(name="Vova"):
     return template('Hello {{name}}, how are you?', name=name)
 
+
+######################################################
+###########END ENDPOINTS##############################
+######################################################
 
 if __name__ == '__main__':
     PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
