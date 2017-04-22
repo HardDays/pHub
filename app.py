@@ -20,8 +20,8 @@ def wsgi_app():
     return bottle.default_app()
 
 
-@bottle.route('/hello')
-def hello(name):
+@bottle.route('/hello/<name>')
+def hello(name="Vova"):
     return "Hello World, {{name}}!"
 
 
