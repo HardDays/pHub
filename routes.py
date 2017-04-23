@@ -2,7 +2,7 @@
 Routes and views for the bottle application.
 """
 
-from bottle import route, view, post, request, response
+from bottle import route, view, post, request, response, Bottle
 from datetime import datetime
 import json
 
