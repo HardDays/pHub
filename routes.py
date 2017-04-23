@@ -6,7 +6,7 @@ from bottle import route, view, post, request, response
 from datetime import datetime
 import json
 
-
+'''
 from db.db_controller import DbController
 from controllers.pay_for_me_controller import PayForMeController
 from controllers.content_controller import ContentController
@@ -17,7 +17,7 @@ db = DbController()
 pay_for_me = PayForMeController(db)
 content = ContentController(db)
 notif = NotifController()
-
+'''
 
 @route('/')
 @route('/home')
