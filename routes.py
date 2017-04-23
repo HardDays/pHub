@@ -11,14 +11,12 @@ from controllers.pay_for_me_controller import PayForMeController
 from controllers.content_controller import ContentController
 from controllers.bill_controller import BillController
 
-import requests
-
-#from controllers.notif_controller import NotifController
+from controllers.notif_controller import NotifController
 
 db = DbController()
 pay_for_me = PayForMeController(db)
 content = ContentController(db)
-#notif = NotifController()
+notif = NotifController()
 
 
 @route('/')
