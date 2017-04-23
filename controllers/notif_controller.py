@@ -14,8 +14,8 @@ class NotifController(object):
 
 	def send_to_group(self, group, notification):
 		for user in group.users:
-			self.sent_to_user(user, notification)
+			self.send_to_user(user, notification)
 
 	def send_to_contacts(self, user, notification):
 		for contact in user.contacts:
-			self.sent_to_user(contact, notification)
+			self.send_to_user(contact, notification)

@@ -2,8 +2,20 @@
 Routes and views for the bottle application.
 """
 
-from bottle import route, view
+from bottle import route, view, post, request, response
 from datetime import datetime
+import json
+
+
+from db.db_controller import DbController
+from controllers.pay_for_me_controller import PayForMeController
+from controllers.content_controller import ContentController
+from controllers.bill_controller import BillController
+
+db = DbController()
+pay_for_me = PayForMeController(db)
+content = ContentController(db)
+
 
 @route('/')
 @route('/home')
@@ -33,3 +45,22 @@ def about():
         message='Your application description page.',
         year=datetime.now().year
     )
+
+@route("/pay_for_me/<user_id>/<to>/<amont>")
+def pay_for_me(user_id, to, amount):
+    msg = "Pay instead my, please!"
+    pay_for_me.pay_for_me(user_id, to, amount, msg)
+
+@route("/users/get_all_users")
+def get_all_users():
+
+    return dict(data = db.users)
+
+
+@route("/pay_for_me/accept_payment/<bill_id>/<user_id>")
+def accept_payment(bill_id, user_id):
+    return pay_for_me.accept_payment(bill_id, user_id)
+
+@route("bill/get_all_askers/<user_id>")
+def get_all_askers(user_id):
+    bill_controller.get_all_asks(user_id)

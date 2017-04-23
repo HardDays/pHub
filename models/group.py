@@ -1,5 +1,12 @@
+from helpers.str_generator import *
+
 class Group(object):
-	def __init__(self, uuid, users=[], bills=[]):
-		self.uuid = uuid
+
+	uuid = ""
+	users = []
+	bills = []
+
+	def __init__(self, users=[], bills=[]):
+		self.uuid = str_gen()
 		self.users = users
 		self.bills = bills

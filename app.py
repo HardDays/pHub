@@ -6,6 +6,9 @@ import bottle
 import os
 import sys
 
+from controllers.pay_for_me_controller import PayForMeController
+from db.db_controller import DbController
+
 # routes contains the HTTP handlers for our server and must be imported.
 import routes
 
@@ -20,9 +23,9 @@ def wsgi_app():
     """Returns the application to make available through wfastcgi. This is used
     when the site is published to Microsoft Azure."""
     return bottle.default_app()
-    
+
 ######################################################
-#########BEGIN ENDPOINTS##############################
+#################BEGIN ENDPOINTS######################
 ######################################################
 
 @bottle.route('/hello/<name>')
@@ -31,7 +34,7 @@ def hello(name="Vova"):
 
 
 ######################################################
-###########END ENDPOINTS##############################
+###################END ENDPOINTS######################
 ######################################################
 
 if __name__ == '__main__':
