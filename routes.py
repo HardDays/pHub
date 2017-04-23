@@ -11,10 +11,12 @@ from db.db_controller import DbController
 from controllers.pay_for_me_controller import PayForMeController
 from controllers.content_controller import ContentController
 from controllers.bill_controller import BillController
+from controllers.notif_controller import NotifController
 
 db = DbController()
 pay_for_me = PayForMeController(db)
 content = ContentController(db)
+notif = NotifController()
 
 
 @route('/')
@@ -42,9 +44,15 @@ def about():
     """Renders the about page."""
     return dict(
         title='About',
-        message='Your application description page.',
+        message='Your application description papge.',
         year=datetime.now().year
     )
+
+@route('/notifications/send_to_number', method='POST')
+def send_to_number():
+    notif.send_to_phone(request.forms.get('phone'), request.forms.get('message'))
+
+    #print(request.body.readlines())
 
 @route("/pay_for_me/<user_id>/<to>/<amont>")
 def pay_for_me(user_id, to, amount):
@@ -53,9 +61,7 @@ def pay_for_me(user_id, to, amount):
 
 @route("/users/get_all_users")
 def get_all_users():
-
     return dict(data = db.users)
-
 
 @route("/pay_for_me/accept_payment/<bill_id>/<user_id>")
 def accept_payment(bill_id, user_id):

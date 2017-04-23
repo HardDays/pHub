@@ -1,6 +1,6 @@
 from db.db_controller import DbController
 from models.bill import *
-from transfer_controller import TransferController
+from controllers.transfer_controller import TransferController
 
 
 class BillController(object):
