@@ -17,9 +17,10 @@ db = DbController()
 pay_for_me = PayForMeController(db)
 content = ContentController(db)
 notif = NotifController()
+'''
+app = Bottle()
 
-
-@hook('after_request')
+@app.hook('after_request')
 def enable_cors():
     """
     You need to add some headers to each request.
@@ -28,7 +29,7 @@ def enable_cors():
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
-
+'''
 @route('/')
 @route('/home')
 @view('index')
