@@ -18,13 +18,17 @@ pay_for_me = PayForMeController(db)
 content = ContentController(db)
 notif = NotifController()
 
-def allow_cors(func):
-    """ this is a decorator which enable CORS for specified endpoint """
-    def wrapper(*args, **kwargs):
-        response.headers['Access-Control-Allow-Origin'] = 'example.com' # * in case you want to be accessed via any website
-        return func(*args, **kwargs)
+app = Bottle()
 
-    return wrapper
+@app.hook('after_request')
+def enable_cors():
+    """
+    You need to add some headers to each request.
+    Don't use the wildcard '*' for Access-Control-Allow-Origin in production.
+    """
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
 
 @route('/')
 @route('/home')
@@ -56,7 +60,6 @@ def about():
     )
 
 @route('/notifications/send_to_number', method='POST')
-@allow_cors
 def send_to_number():
     notif.send_to_phone(request.forms.get('phone'), request.forms.get('message'))
 
