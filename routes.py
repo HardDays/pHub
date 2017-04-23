@@ -10,6 +10,9 @@ from db.db_controller import DbController
 from controllers.pay_for_me_controller import PayForMeController
 from controllers.content_controller import ContentController
 from controllers.bill_controller import BillController
+
+import requests
+
 #from controllers.notif_controller import NotifController
 
 db = DbController()
