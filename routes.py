@@ -18,9 +18,8 @@ pay_for_me = PayForMeController(db)
 content = ContentController(db)
 notif = NotifController()
 
-app = Bottle()
 
-@app.hook('after_request')
+@hook('after_request')
 def enable_cors():
     """
     You need to add some headers to each request.
