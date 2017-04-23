@@ -1,4 +1,4 @@
-import requests
+import urllib2, urllib
 
 class NotifController(object):
     def __init__(self):
@@ -13,8 +13,17 @@ class NotifController(object):
                         data={'From': '+12029993558', 'To': user.phone, 'Body': notification.message}, auth=self.auth)
 
     def send_to_phone(self, phone, message):
-        r = requests.post(self.url, 
-                        data={'From': '+12029993558', 'To': phone, 'Body': message}, auth=self.auth)
+        #r = requests.post(self.url, 
+                       # data={'From': '+12029993558', 'To': phone, 'Body': message}, auth=self.auth)
+
+        data = urllib.urlencode({'From': '+12029993558', 'To': phone, 'Body': message})
+        passman = urllib2.HTTPPasswordMgrWithDefaultRealm()
+        passman.add_password(None, self.url, self.auth[0], self.auth[1])
+        auth_handler = urllib2.HTTPBasicAuthHandler(passman)
+        opener = urllib2.build_opener(auth_handler)
+        urllib2.install_opener(opener)
+        content = urllib2.urlopen(self.url, data)
+        print(content)
         #print(r.status_code, r.reason)
         '''
         message = self.client.api.account.messages.create(
